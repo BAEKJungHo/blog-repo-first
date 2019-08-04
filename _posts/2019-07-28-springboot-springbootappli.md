@@ -1,8 +1,8 @@
 ---
-title: "Spring Boot. webapp 만들기"
+title: "webapp 만들기"
 layout: post
-category: Spring
-tags: [Spring]
+category: SpringBoot
+tags: [SpringBoot]
 excerpt: "Spring Boot에서 webapp 폴더를 만드는 방법을 배워 보겠습니다."
 author: BAEKJungHo
 ---

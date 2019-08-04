@@ -1,9 +1,9 @@
 ---
-title: "[DBeaver] MySQL연결 및 IntelliJ 연결"
+title: "[DBeaver] MySQL연결"
 layout: post
 category: DataBase
 tags: [MySQL, Spring]
-excerpt: "DBeaver에서 MySQL DB에 연결하는 방법과 IntelliJ에 연결하여 사용하는 방법에 대해서 배워 봅시다."
+excerpt: "DBeaver에서 MySQL DB에 연결하는 방법에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---
 
@@ -12,7 +12,7 @@ author: BAEKJungHo
 
 ## 목표
 
-  > DBeaver에서 MySQL DB에 연결하는 방법과 IntelliJ에 연결하여 사용하는 방법에 대해서 배워 봅시다.
+  > DBeaver에서 MySQL DB에 연결하는 방법에 대해서 배워 봅시다.
 
 ## MySQL 연결
 

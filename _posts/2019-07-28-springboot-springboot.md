@@ -1,8 +1,8 @@
 ---
 title: "Spring Boot(스프링 부트)"
 layout: post
-category: Spring
-tags: [Spring]
+category: SpringBoot
+tags: [SpringBoot]
 excerpt: "Spring Boot(스프링 부트)에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---
@@ -110,7 +110,7 @@ public class Application {
 }
 ```
 
-  이제 서비스할 웹 페이지를 만들겠다면 늘 하던 대로 @RequestMapping 어노테이션을 붙인 컨트롤러 메서드를 만들면 된다. 
+  이제 서비스할 웹 페이지를 만들겠다면 늘 하던 대로 @RequestMapping 어노테이션을 붙인 컨트롤러 메서드를 만들면 된다.
 
 ## 참조
 
