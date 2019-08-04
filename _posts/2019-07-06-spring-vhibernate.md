@@ -104,6 +104,8 @@ author: BAEKJungHo
   }
   ```
 
+  위 처럼 위배된 Bean 유효성 검증 제약 조건에 대한 오류 메시지를 생성하는 것을 `메세지 보간법(Message Interpolation)`이라고 합니다.
+
   - Hibernate-Validator와 BindingResut를 같이 사용한 코드
 
   ```java
@@ -359,7 +361,7 @@ public class SurveyMemberValidator implements Validator {
   5. @InitBinder 메서드를 통해 `Custom Validator Object`를 실행
   6. supports 메서드를 통해서 Validator가 지원 가능한지 체크
   7. validate 메서드를 통해서 주어진 객체(target)에 대해서 유효성 체크를 수행하고, 유효성 에러 발생시 주어진 Errors 객체에 관련 정보가 저장됨
-  8. Erros 객체에 저장된 정보를 컨트롤러에서 `BindingResult의 hasErrors()`메서드를 통해 에러 체크 
+  8. Erros 객체에 저장된 정보를 컨트롤러에서 `BindingResult의 hasErrors()`메서드를 통해 에러 체크
 
 ## 참조
 
