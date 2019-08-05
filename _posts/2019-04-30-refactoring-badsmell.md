@@ -2,7 +2,7 @@
 title: "BAD SMELL"
 layout: post
 category: 리팩토링
-tags: [Java, 리팩토링]
+tags: [리팩토링]
 excerpt: "Refactoring의 판단 기준인 Bad Smell에 대해 배워 봅시다."
 author: BAEKJungHo
 ---
