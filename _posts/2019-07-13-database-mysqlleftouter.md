@@ -73,6 +73,10 @@ AND B.DEL_CHK = 'N'
   ON 절안에 `F.del_chk = 'N'` 조건을 추가로 줘서 먼저 실행시키게 되면, B_FILEDETAIL의 값이 NULL이더라도
   정상적으로 쿼리 결과가 나옵니다.
 
+### 참고
+
+  > [ON 절과 WHERE 절의 차이 공부하기](https://baekjungho.github.io/database-onwhere/)
+
 ## 언제 LEFT JOIN을 사용할까?
 
   LEFT JOIN을 써야 하는 경우는, `게시판-댓글`이나 `메인 페이지나-서브 페이지` 등 `서로 연관된 테이블 or 페이지` 일때, 댓글이 없다고 게시판 페이지를 에러페이지로 떨구면 안되며("데이터가 없습니다" 와 같은 문구가 나와야함), 서브 페이지의 데이터가 없다고 메인 페이지까지 안나오면 안되는 경우에 LEFT JOIN을 씁니다.
