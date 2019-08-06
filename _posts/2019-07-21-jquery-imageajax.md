@@ -1,5 +1,5 @@
 ---
-title: "Image를 비동기 방식으로 업로드"
+title: "[AJAX] Image를 비동기 방식으로 업로드"
 layout: post
 category: JQurey
 tags: [JQuery, Ajax]

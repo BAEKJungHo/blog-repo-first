@@ -26,7 +26,7 @@ author: BAEKJungHo
 
   - ckeditor를 textarea에 클래스 명으로 추가
 
-	```html
+	```
 	<textarea name="privacyVo.privacyContent" class="content ckeditor" id="privacyVo.privacyContent" cols="" rows="" style="height:300px;">
     <c:out value="${resultVo.privacyVo.privacyContent }" />
   </textarea>
