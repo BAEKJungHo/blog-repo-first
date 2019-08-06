@@ -72,3 +72,12 @@ author: BAEKJungHo
 
   즉, 커밋, 롤백에 관한 모든 처리등을 하기 위해서는 원래 위와 같은 코드를 작성해야하는데, 스프링에서는 `@Transactional` 어노테이션을 작성하기만 하면
   알아서 트랜잭션에 관한 처리를 해줍니다.
+
+### ServiceImple에서 @Transactional 사용하기
+
+  예를들어 XXXServiceImpl의 메서드 한 곳에서, 여러개의 메서드를(@Transactional 어노테이션이 각각 다르게 적용된) 호출하여 DB작업을 하는경우(각각의 메서드는 Repository에서 @Transactional가 되어있습니다.)
+
+  각각의 메서드는 서로 연관되어있기 때문에, 하나라도 실패시 커밋 롤백이 제대로 이루어지기 위해서 해당 메서드 위에 @Transactional를 다시 선언해서 묶어줍니다.
+
+  특별한 상황이 아니라면 Repository의 추상 메서드에서만 `@Transactional` 어노테이션을 달아주면 되지만, 위 처럼 한 메서드 내에서 @Transactional이 적용된 여러 메서드를 호출해서 DB 작업을 하는 경우에는
+  해당 메서드 위에도 @Transactional 처리를 해야 합니다.
