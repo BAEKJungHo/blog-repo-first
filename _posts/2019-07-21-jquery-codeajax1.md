@@ -1,5 +1,5 @@
 ---
-title: "코드로 이해하는 AJAX 동작 방식"
+title: "[AJAX] 코드로 비동기 이해하기"
 layout: post
 category: JQurey
 tags: [JQuery, Ajax]
@@ -121,7 +121,7 @@ author: BAEKJungHo
 
     - text/html
       - InternalResourceViewResolver, Tiles...
-      
+
     - application/json, xml 등
       - ViewResolver가 없으므로 알맞은 `MessageConverter`를 사용
       - Jackson, JAXb2 ..

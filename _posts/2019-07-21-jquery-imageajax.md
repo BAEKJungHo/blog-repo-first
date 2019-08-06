@@ -1,8 +1,8 @@
 ---
 title: "Image를 비동기 방식으로 업로드"
 layout: post
-category: Spring
-tags: [Spring]
+category: JQurey
+tags: [JQuery, Ajax]
 excerpt: "Image를 비동기 방식으로 업로드하는 방법에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---

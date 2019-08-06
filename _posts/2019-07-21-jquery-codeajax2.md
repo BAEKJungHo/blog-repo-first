@@ -1,8 +1,8 @@
 ---
-title: "ckeditor를 사용한 비동기 처리 방식"
+title: "[AJAX] ckeditor 비동기 처리 방식"
 layout: post
 category: JQurey
-tags: [JQuery]
+tags: [JQuery, Ajax]
 excerpt: "ckeditor를 사용한 비동기 처리 방식에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---
