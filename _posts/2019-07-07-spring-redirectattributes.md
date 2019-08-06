@@ -48,6 +48,21 @@ public String boardEdit(@PathVariable int num, Model model, HttpSession session,
 
   RedirectAttributes rttr 파라미터를 만들고 addFlashAttribute() 메서드를 호출하여 사용하면 됩니다.
 
+### 세션을 이용한 특징
+
+  `redirectAttributes.addFlashAttribute()`를 사용하면 아래와 동일한 효과를 얻을 수 있습니다.
+
+  > @SessionAttributes 사용, @ModelAttribute 데이터 바인딩시 세션값 먼저 바인딩 후 파라미터값 바인딩이 됩니다.
+
+  즉, redirectAttributes.addFlashAttribute()를 사용하면 세션에 저장된 redirectAttributes에 저장된 값을 먼저 꺼냅니다.
+
+  ```java
+  redirectAttributes.addFlashAttribute("searchVo", searchVo);
+  return REDIRECT_URL;
+  ```
+
+  위와 같이 되어 있을 경우, 이런식으로 리턴 해주게 되면, searchVo안에 담긴 pageIndex나 searchKeyword 조건 등을, 다른 HandlerMethod에서도 유지 할 수 있습니다.
+
 ## 참조
 
   > [https://m.blog.naver.com/PostView.nhn?blogId=allkanet72&logNo=220964699929&proxyReferer=https%3A%2F%2Fwww.google.com%2F](https://m.blog.naver.com/PostView.nhn?blogId=allkanet72&logNo=220964699929&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
