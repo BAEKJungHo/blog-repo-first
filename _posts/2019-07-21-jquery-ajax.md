@@ -272,7 +272,7 @@ author: BAEKJungHo
 
 #### EXAMPLE
 
-  ```JavaScript
+```javascript
 function surveyPrivacy(cnt){
 let sur_seq = $("#seq").val();
 if(sur_seq == undefined){
