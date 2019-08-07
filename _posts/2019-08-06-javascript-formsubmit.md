@@ -22,7 +22,7 @@ $("#surveyVo").method = METHOD.POST;
 $("#surveyVo").submit();
 ```
 
-위 와같은 방식으로 되어 있을때, 해당 url을 가진 post방식의 `surveyVo`라는 name값의 form을 찾아서 Submit 해줍니다.
+위와 같은 방식으로 되어 있을때, 해당 url을 가진 post방식의 `surveyVo`라는 name값의 form을 찾아서 Submit 해줍니다.
 
 따라서 해당 폼 안에 hidden 속성으로 된 값들도 넘길 수 있습니다.
 
