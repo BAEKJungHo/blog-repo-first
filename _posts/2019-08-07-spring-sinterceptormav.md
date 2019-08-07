@@ -54,6 +54,10 @@ postHandle(HttpServletRequest request, HttpServletResponse response, Object hand
 afterCompletion()
   ```
 
+## 인터셉터를 사용한 예제
+
+  > [QueryString을 param 키워드를 이용해서 꺼내기](https://baekjungho.github.io/spring-querystring/)
+
 ## 참고
 
   > [인터셉터와 필터의 차이 공부하기](https://baekjungho.github.io/spring-interceptorfilter/)
