@@ -3,7 +3,7 @@ title: "암호화(Encryption)와 해시(Hash)"
 layout: post
 category: Technology
 tags: [Technology]
-excerpt: ""
+excerpt: "암호화(Encryption)와 해시(Hash)에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---
 
