@@ -38,6 +38,9 @@ author: BAEKJungHo
   @Getter @Setter
   public class FileManageDto {
     private String name;
+    /* 자기 자신을 List로 가지는 참조 변수 생성
+    * 이 부분이 핵심 입니다.
+    */
     private List<FileManageDto> fileManageDto;
   }
   ```
