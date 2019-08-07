@@ -56,7 +56,7 @@ afterCompletion()
 
 ## 인터셉터를 사용한 예제
 
-  > [QueryString을 param 키워드를 이용해서 꺼내기](https://baekjungho.github.io/spring-querystring/)
+  > [QueryString을 param 키워드를 이용해서 꺼내기, 인터셉터를 이용해서 모든 클래스 및 브라우저 URI에 공통으로 들어가야할 속성을 Interceptor로 선언하기](https://baekjungho.github.io/spring-querystring/)
 
 ## 참고
 
