@@ -54,6 +54,30 @@ postHandle(HttpServletRequest request, HttpServletResponse response, Object hand
 afterCompletion()
   ```
 
+### preHandle()에서 HttpServletRequest 객체 사용하기
+
+  preHandle() 메서드에서 HttpServletRequest 객체를 이용하면, 키값으로 JSP에서 사용할 수 있습니다.
+
+  ```java
+  request.setAttribute("CMS_MENU", menuList);
+  ```
+
+  HttpServletRequest 객체를 이용해서 setAttribute로 키값과 Value값을 담으면,
+
+  JSP에서 키값으로 꺼내 쓸 수 있습니다. 만약 CMS_MENU라는 키값안에 List를 속성으로 가지고 있는경우(EX) 2뎁스 이상), JSP에서 forEach를 두 번 써서 꺼내 쓸 수 있습니다.
+
+  ```html
+  <c:forEach items="${CMS_MENU}" var="cmsMenu">
+      <li><a href="#"><c:out value="${cmsMenu.menuName}"/></a>
+          <ul>
+              <c:forEach items="${cmsMenu.children}" var="children">
+                  <li><a href="<c:url value="${children.url}?mno=${children.id}"/>" class="code_${children.id}"><c:out value="${children.menuName}"/></a></li>
+              </c:forEach>
+          </ul>
+      </li>
+  </c:forEach>
+  ```
+
 ## 인터셉터를 사용한 예제
 
   > [QueryString을 param 키워드를 이용해서 꺼내기, 인터셉터를 이용해서 모든 클래스 및 브라우저 URI에 공통으로 들어가야할 속성을 Interceptor로 선언하기](https://baekjungho.github.io/spring-querystring/)
