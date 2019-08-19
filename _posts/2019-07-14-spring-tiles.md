@@ -417,6 +417,134 @@ public String list(@ModelAttribute("searchVo") XXXSurveyVo searchVo, Model model
   private final String REDIRECT_URL = "redirect:/XXX/roles";
   ```
 
+  아래 예제를 통해서 정확한 동작 방식과, 더 자세하게 배워 봅시다.
+
+## EXAMPLE
+
+  타일즈(Tiles)를 이용한 컨트롤러와 뷰의 동작과정은 다음과 같습니다.
+
+### 기본 세팅
+
+  - 폴더 생성 : template
+    - 해당 폴더 내에 Tiles Framework를 적용하기 위한 View 파일 생성
+    - 폴더 위치 : `WEB-INF/JSP/template`
+
+  - 폴더 생성 : config
+    - 해당 폴더 내에 Tiles Framework를 사용하기 위한 xml 파일 생성
+    - 폴더 위치 : `WEB-INF/config`
+
+### 1. Tiles Framework를 적용하기 위한 View 파일 생성
+
+  - Tiles를 적용할 layout.jsp
+    - layout에 공통으로 적용할 공통 컴포넌트
+      - meta.jsp
+      - header.jsp
+      - footer.jsp
+      - left.jsp
+
+  - layout.jsp
+
+  ```html
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+  <tiles:insertAttribute name="meta"/>
+<body class="cms">
+<div id="wrap">
+  <div id="container">
+      <div id="remote">
+          <tiles:insertAttribute name="left"/>
+      </div>
+      <div id="content">
+          <tiles:insertAttribute name="header"/>
+          <div id="txt">
+              <tiles:insertAttribute name="body"/>
+          </div>
+      </div>
+  </div>
+</div>
+</body>
+</html>
+  ```
+
+  `<tiles:insertAttribute name="meta"/>`과 같은 방식으로 공통 컴포넌트들을 삽입
+
+### 2. Tiles 적용을 위한 xml파일 생성
+
+  1. layout.jsp에 적용하기 위한 공통 컴포넌트들이 있는 definition name 설정
+  2. 컨트롤러에서 return값으로 반환되는 View를 찾기 위한, 개별 컴포넌트 definition name 설정
+
+  ```xml
+  <?xml version="1.0" encoding="UTF-8"?>
+
+  <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+  <tiles-definitions>
+  <!-- 공통 부분 -->
+      <definition name="core" template="/WEB-INF/jsp/core/template/layout.jsp">
+          <put-attribute name="meta" value="/WEB-INF/jsp/core/template/meta.jsp" />
+          <put-attribute name="header" value="/WEB-INF/jsp/core/template/header.jsp" />
+          <put-attribute name="left" value="/WEB-INF/jsp/core/template/left.jsp" />
+      </definition>
+
+      <definition name="pop" template="/WEB-INF/jsp/core/template/popLayout.jsp">
+          <put-attribute name="meta" value="/WEB-INF/jsp/core/template/meta.jsp" />
+      </definition>
+
+      <definition name="site" template="/WEB-INF/jsp/site/template/layout.jsp">
+          <put-attribute name="meta" value="/WEB-INF/jsp/site/template/meta.jsp" />
+          <put-attribute name="header" value="/WEB-INF/jsp/site/template/header.jsp" />
+          <put-attribute name="footer" value="/WEB-INF/jsp/site/template/footer.jsp" />
+      </definition>
+
+  <!--    관리자 타일즈    -->
+  <!-- 컨트롤러에서 return값에 따라 해당 타일즈를 거쳐간다 -->
+  <!-- 해당 타일즈에서 extends로 위에 선언한 공통부분의 definition 이름을 적어주면, 아래에 선언한 jsp마다 공통부분이 들어가게된다. -->
+  <!-- 컨트롤러에서는 return xxx/xxx.core과 같이 사용 -->
+      <definition name="*.pop" extends="pop">
+          <put-attribute name="body" value="/WEB-INF/jsp/core/{1}.jsp" />
+      </definition>
+
+      <definition name="*.core" extends="core">
+          <put-attribute name="body" value="/WEB-INF/jsp/core/{1}.jsp" />
+      </definition>
+
+      <definition name="*/*.core" extends="core">
+          <put-attribute name="body" value="/WEB-INF/jsp/core/{1}/{2}.jsp" />
+      </definition>
+  <!--    관리자 타일즈 END      -->
+
+  <!--   사용자 타일즈 -->
+      <definition name="*/*.site" extends="site">
+          <put-attribute name="body" value="/WEB-INF/jsp/site/{1}/{2}.jsp" />
+      </definition>
+  <!-- 사용자 타일즈 END -->
+
+  </tiles-definitions>
+  ```
+
+  > 참고
+  >
+  > definition name은 서로 달라야 합니다. 또한 definition name에 Asterisk(와일드카드)를 사용한 이유는, 모든 문자열을 대입시키기 위해서 입니다.
+
+  위 tiles 설정파일을 보면 definition name이 `site와 core`이 둘은 같은 템플릿을 사용하고 있습니다.(template 속성에 적힌 경로가 같습니다.)
+  하지만 내부에 지정한 공통 컴포넌트들은 서로 다릅니다.
+
+  즉, 위 설정파일을 통해 알 수 있듯이, 같은 템플릿을 사용하더라도 `<put-attribute name="">`으로 템플릿에 적용할 공통 컴포넌트들을 다르게 지정하면,
+  definition name마다 같은 템플릿을 서로 다르게 적용할 수 있습니다.
+
+  예를들어 메인페이지는 left가 없어야하며, 서브메인은 left가 있어야할 경우 위와 비슷하게 설정하여 구현할 수 있습니다.
+
+### 동작방식
+
+  1. Tiles Framework를 적용하기 위한 View 파일 생성
+  2. Tiles 적용을 위한 xml파일 생성
+  3. 컨트롤러에서 return으로 반환된 값 `abc/efg.core`가 타일즈를 통해서 알맞은 definition name을 찾아감
+  4. definition name이 일치하는 타일즈의 value값을 반환하여 View를 찾는다.
+  5. 해당 View에서는 `Tiles가 적용된 layout.jsp 즉, TEMPLATE`이 적용되어 있는 상태(include 필요 없음)
+
 ## 참조
 
   > [https://its-easy.tistory.com/13](https://its-easy.tistory.com/13)
