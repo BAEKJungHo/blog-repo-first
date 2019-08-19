@@ -78,6 +78,124 @@ afterCompletion()
   </c:forEach>
   ```
 
+### 인터셉터를 사용하기 위한 설정(WebConfig.java)
+
+  ```java
+  @Configuration
+  @ComponentScan(basePackages = "com.tech")
+  @ServletComponentScan(basePackages = "com.tech.blog")
+  public class WebConfig extends WebMvcConfigurerAdapter {
+
+      @Override
+      public void addViewControllers(ViewControllerRegistry registry) {
+          registry.addViewController("/error/400").setViewName("/errors/400");
+          registry.addViewController("/error/403").setViewName("/errors/403");
+          registry.addViewController("/error/exception").setViewName("/errors/exception");
+          registry.addViewController("/tech/login").setViewName("login.pop");
+      }
+
+      @Override
+      public void addInterceptors(InterceptorRegistry registry) {
+          registry.addInterceptor(new TechMnoInterceptor())
+                      .addPathPatterns("/mec/**")
+                      .excludePathPatterns("/mec/**/api/**");
+          registry.addInterceptor(techMenuRenderInterceptor())
+                      .addPathPatterns("/tech/**")
+                      .excludePathPatterns("/tech/**/api/**", "/tech/login", "/tech/logout", "/tech/pwd");
+      }
+
+      @Bean
+      public HandlerInterceptor techMenuRenderInterceptor() {
+          return new TechMenuRenderInterceptor();
+      }
+  }
+  ```
+
+  인터셉터를 사용하기 위해서는 `WebMvcConfigurerAdapter` 클래스를 상속 받아서 `addInterceptors` 메서드를 오버라이딩 하여 사용해야 합니다.
+
+### WebMvcConfigurerAdapter
+
+스프링 MVC부터 제공, 자바 8부터 사용가능 합니다.
+
+WebMvcConfigurer빈 클래스를 사용하여 서브 클래스가 관심있는 메소드 만 재정의 할 수 있도록 구현 합니다.
+
+WebMvcConfigurer 빈 클래스를 구현하여 서브 클래스가 관심 있는 메서드만 재정의 합니다.
+
+> [WebMvcConfigurerAdapter Documents](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurerAdapter.html)
+
+```java
+import java.util.List;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.validation.MessageCodesResolver;
+import org.springframework.validation.Validator;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+
+public abstract class WebMvcConfigurerAdapter implements WebMvcConfigurer {
+
+  public WebMvcConfigurerAdapter() {
+  }
+
+  public void configurePathMatch(PathMatchConfigurer configurer) {
+  }
+
+  public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+  }
+
+  public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+  }
+
+  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+  }
+
+  public void addFormatters(FormatterRegistry registry) {
+  }
+
+  public void addInterceptors(InterceptorRegistry registry) {
+  }
+
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+  }
+
+  public void addCorsMappings(CorsRegistry registry) {
+  }
+
+  public void addViewControllers(ViewControllerRegistry registry) {
+  }
+
+  public void configureViewResolvers(ViewResolverRegistry registry) {
+  }
+
+  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+  }
+
+  public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
+  }
+
+  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+  }
+
+  public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+  }
+
+  public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+  }
+
+  public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+  }
+
+  public Validator getValidator() {
+    return null;
+  }
+
+  public MessageCodesResolver getMessageCodesResolver() {
+    return null;
+  }
+}
+```
+
 ## 인터셉터를 사용한 예제
 
   > [QueryString을 param 키워드를 이용해서 꺼내기, 인터셉터를 이용해서 모든 클래스 및 브라우저 URI에 공통으로 들어가야할 속성을 Interceptor로 선언하기](https://baekjungho.github.io/spring-querystring/)
