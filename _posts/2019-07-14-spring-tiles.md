@@ -545,6 +545,70 @@ public String list(@ModelAttribute("searchVo") XXXSurveyVo searchVo, Model model
   4. definition name이 일치하는 타일즈의 value값을 반환하여 View를 찾는다.
   5. 해당 View에서는 `Tiles가 적용된 layout.jsp 즉, TEMPLATE`이 적용되어 있는 상태(include 필요 없음)
 
+### 메인과 서브레이아웃의 차이점
+
+  메인레이아웃과 서브레이아웃을 작업할 때의 차이점은 다음과 같습니다. 메인레이아웃은 left를 가지지 않으며, 서브레이아웃은 left를 가집니다.
+
+  - 메인
+    - meta
+    - header
+    - footer
+
+- 서브
+    - meta
+    - header
+    - footer
+    - left
+
+  또한 메인을 붙이는 작업을 할 때에, 메인 페이지의 콘텐츠 부분은, 서브레이아웃에서 쓰는것이 아니라 오직 메인 페이지에서만 쓰기 때문에 index.jsp에 contents 부분을 붙여넣고 layout.jsp에서는 `<tiles:insertAttribute name="body" />`와 같이 사용하면 됩니다.
+
+  - index.jsp
+
+  ```html
+<!-- Content :S -->
+<div id="content">
+  <!-- 내용 생략 -->
+</div>
+<!-- Content :E -->
+  ```
+
+  - layout.jsp
+
+  ```html
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<tiles:insertAttribute name="meta"/>
+<body id="main" class="user">
+<!-- Skip :S -->
+<div id="skip">
+   <strong class="hidden">반복영역 건너뛰기</strong>
+   <ul>
+       <li><a href="#content">본문 바로가기</a></li>
+       <li><a href="#gnb">상단메뉴 바로가기</a></li>
+   </ul>
+</div>
+<!-- Skip :E -->
+<div id="wrap">
+   <div class="js_mobile_check"></div>
+   <tiles:insertAttribute name="header"/>
+</div>
+<!-- Container :S -->
+<div id="container">
+
+   <!-- Content :S -->
+   <tiles:insertAttribute name="body"/>
+   <!-- Content :E -->
+
+</div>
+<!-- Container :E -->
+<tiles:insertAttribute name="footer" />
+</body>
+</html>
+  ```
+
 ## 참조
 
   > [https://its-easy.tistory.com/13](https://its-easy.tistory.com/13)
