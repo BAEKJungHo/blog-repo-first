@@ -365,6 +365,39 @@ author: BAEKJungHo
   }
   ```
 
+## 와일드카드
+
+  실무에서 프로젝트 진행시, 사이트 코드별로 나뉘면서 메인과 서브레이아웃을 작업해야하는 경우, 분기를 태우지말고 와일드카드를 이용해서 쉽게 타일즈를 설정 할 수 있습니다.
+
+  ```xml
+  <definition name="*_main" template="/WEB-INF/jsp/site/template/{1}/mainLayout.jsp">
+      <put-attribute name="meta" value="/WEB-INF/jsp/site/template/{1}/meta.jsp" />
+      <put-attribute name="header" value="/WEB-INF/jsp/site/template/{1}/header.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/jsp/site/template/{1}/footer.jsp" />
+  </definition>
+
+  <definition name="*_sub" template="/WEB-INF/jsp/site/template/{1}/subLayout.jsp">
+      <put-attribute name="meta" value="/WEB-INF/jsp/site/template/{1}/meta.jsp" />
+      <put-attribute name="header" value="/WEB-INF/jsp/site/template/{1}/header.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/jsp/site/template/{1}/footer.jsp" />
+      <put-attribute name="footer" value="/WEB-INF/jsp/site/template/{1}/left.jsp" />
+  </definition>
+  ```
+
+  ```xml
+  <definition name="*/*.main" extends="{1}_main">
+      <put-attribute name="body" value="/WEB-INF/jsp/site/{1}/{2}.jsp" />
+  </definition>
+
+  <definition name="*/*.sub" extends="{1}_sub">
+      <put-attribute name="body" value="/WEB-INF/jsp/site/{1}/{2}.jsp" />
+  </definition>
+
+  <definition name="*/*/*.sub" extends="{1}_sub">
+      <put-attribute name="body" value="/WEB-INF/jsp/site/{1}/{2}/{3}.jsp" />
+  </definition>
+  ```
+
 ### 실무 방식
 
   실무에서는 위 EXAMPLE 1. 방식으로 tiles.xml 파일을 만듭니다. 즉 아래와 같은 방식입니다.
