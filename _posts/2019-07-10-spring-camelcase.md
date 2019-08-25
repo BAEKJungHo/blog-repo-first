@@ -99,6 +99,14 @@ author: BAEKJungHo
 </configuration>
   ```
 
+## JSP 내에서의 CamelCase
+
+  VO 클래스에 fProcessDept라는 속성이 있고, 컬럼 fProcessDept에 감사실이라는 데이터가 들어가있는 경우, fProcessDept의 값을 JSP에 출력하기 위해서 `<c:out value="${result.fProcessDept}" />`로 하면 JSP 에러가 발생합니다.
+
+  그 이유는 JSP에서 카멜케이스(CamelCase) 변환시, getter와 setter를 기준으로 합니다.
+
+  즉, 위 속성에 대한 Getter는 `getFProcessDept()`이므로 JSP에서 정상적으로 출력하기 위해서는 `<c:out value="${result.FProcessDept}" />`로 수정해야합니다.
+
 ## 참조
 
   > [http://www.mybatis.org/mybatis-3/ko/configuration.html](http://www.mybatis.org/mybatis-3/ko/configuration.html)
