@@ -1,9 +1,9 @@
----
+﻿---
 title: "추가Button 클릭 시 태그요소를 추가"
 layout: post
 category: JSP
 tags: [JSP]
-excerpt: "추가Button 클릭 시 태그요소를 추가하는 방법에 대해서 배워 봅시다."
+excerpt: "추가 Button 클릭 시 태그요소를 추가하는 방법에 대해서 배워 봅시다."
 author: BAEKJungHo
 ---
 
