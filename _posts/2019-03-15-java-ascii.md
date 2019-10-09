@@ -16,8 +16,7 @@ _명품자바에센셜(생능출판사, 황기태), 이것이 자바다(한빛�
 
 ## ASCII CODE
 
-  ASCII CODE(American Standard Code for Information Interchange)는 문자형태입니다.
-  아스키코드를 변환하고 변환 되는 과정을 배워 보겠습니다.
+  ASCII CODE(American Standard Code for Information Interchange)는 문자형태입니다. 아스키코드를 변환하고 변환 되는 과정을 배워 보겠습니다.
 
   아스키 코드(ASCII Table)는 0번부터 127번까지만 사용하고, 아스키 코드는 7비트만 사용합니다.
   그 이유는 1비트를 통신 에러 검출을 위해 사용하기 때문이다.
