@@ -16,8 +16,7 @@ _명품자바에센셜(생능출판사, 황기태), 이것이 자바다(한빛�
 
 ## 배열(Array)
 
-  자바에서 배열은 객체로 취급하며, [Array](https://baekjungho.github.io/java-array/)에서
-  배운 것 처럼, 참조타입에 속합니다.
+  자바에서 배열은 객체로 취급하며, [Array](https://baekjungho.github.io/java-array/)에서 배운 것 처럼, 참조타입에 속합니다.
 
   배열은 한 번 생성하면 크기 변경이 불가능 합니다.
 
